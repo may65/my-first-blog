@@ -1,0 +1,23 @@
+https://www.pythonanywhere.com/user/gsksm/account/#api_token
+API
+140be167bfb5b537850466a427e84bf6df86a5a8
+
+Use this token for our API by setting a request header called Authorization, followed by Token <token>, eg:
+
+import requests
+username = 'gsksm'
+token = '140be167bfb5b537850466a427e84bf6df86a5a8'
+
+response = requests.get(
+ 'https://www.pythonanywhere.com/api/v0/user/{username}/cpu/'.format(
+ username=username
+ ),
+ headers={'Authorization': 'Token {token}'.format(token=token)}
+)
+if response.status_code == 200:
+ print('CPU quota info:')
+ print(response.content)
+else:
+ print('Got unexpected status code {}: {!r}'.format(response.status_code, response.content))
+ 
+TIP: Your API token is also available from pythonanywhere consoles, tasks and webapps, as an Environment Variable, $API_TOKEN
